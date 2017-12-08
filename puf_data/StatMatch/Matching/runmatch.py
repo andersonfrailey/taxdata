@@ -15,7 +15,7 @@ import argparse
 
 
 def match(mar_cps_path='asec2016_pubuse_v3.dat',
-          puf_path='puf2011.csv'):
+          puf_path='puf2012.csv'):
     # Add arguments for specifying path to CPS file in CSV format
     # this will allow the program to skip the process of creating the CPS from
     # a .DAT file.
@@ -72,7 +72,7 @@ def match(mar_cps_path='asec2016_pubuse_v3.dat',
     cpsrets = add_cps(filers, match, puf)
     cps_matched = add_nonfiler(cpsrets, nonfilers)
     # add age range variable
-    cps_matched['agerange'] = 0
+    # cps_matched['agerange'] = 0
     # Rename variables for use in PUF data prep
     renames = {'icps1': 'age_head',
                'icps2': 'age_spouse',

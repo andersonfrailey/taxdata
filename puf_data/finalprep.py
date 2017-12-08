@@ -217,6 +217,7 @@ def remove_unused_variables(data):
         'f3800', 'f8582', 'f8606', 'f8829', 'f8910',
         'n20', 'n25', 'n30', 'prep', 'schb', 'schcf', 'sche',
         'tform', 'ie', 'txst', 'xfpt', 'xfst',
+        'gender', 'earnsplit', 'agedp1', 'agedp2', 'agedp3',
         'xocah', 'xocawh', 'xoodep', 'xopar', 'agerange',
         's008', 's009', 'wsamp', 'txrt', 'matched_weight',
         'e01000', 'e03260', 'e09400', 'e24516', 'e62720', 'e62730',
@@ -478,6 +479,8 @@ def split_earnings_variables(data, data_year):
         mte = 106800
     elif data_year == 2011:
         mte = 106800
+    elif data_year == 2012:
+        mte = 110100
     else:
         raise ValueError('illegal SOI PUF data year {}'.format(data_year))
     # total self-employment earnings subject to SECA taxation

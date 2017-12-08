@@ -6,7 +6,7 @@ into growfactors.csv (used by Tax-Calculator)
 import pandas as pd
 
 # pylint: disable=invalid-name
-first_data_year = 2011
+first_data_year = 2012
 input_filename = 'Stage_I_factors.csv'
 output_filename = 'growfactors.csv'
 
