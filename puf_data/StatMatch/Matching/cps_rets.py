@@ -181,6 +181,15 @@ class Returns(object):
         zwaspt = record['wsal_val']
         zwassp = 0
 
+        # Imputed benefit variables
+        record['housing_ben'] = record['housing_impute']
+        record['snap_ben'] = record['snap_impute']
+        record['ssi_ben'] = record['ssi_impute']
+        record['tanf_ben'] = record['tanf_impute']
+        record['wic_ben'] = (record['wic_impute_children'] +
+                             record['wic_impute_infants'] +
+                             record['wic_impute_women'])
+
         # home Ownership Flag
         if (self.nunits == 1) and (record['h_tenure'] == 1):
             zowner = 1
@@ -282,6 +291,15 @@ class Returns(object):
                 zchsup += 0
                 zfinas += 0
                 zwassp = spouse['wsal_val']
+
+                # Imputed benefit variables
+                record['housing_ben'] += spouse['housing_impute']
+                record['snap_ben'] += spouse['snap_impute']
+                record['ssi_ben'] += spouse['ssi_impute']
+                record['tanf_ben'] += spouse['tanf_impute']
+                record['wic_ben'] += (spouse['wic_impute_children'] +
+                                      spouse['wic_impute_infants'] +
+                                      spouse['wic_impute_women'])
 
         if intst > 400:
             xschb = 1
@@ -714,6 +732,15 @@ class Returns(object):
                         record['n21'] += 1
                     if individual['a_age'] >= 65:
                         record['elderly_dependents'] += 1
+
+                    # Imputed benefit variables
+                    record['housing_ben'] += individual['housing_impute']
+                    record['snap_ben'] += individual['snap_impute']
+                    record['ssi_ben'] += individual['ssi_impute']
+                    record['tanf_ben'] += individual['tanf_impute']
+                    record['wic_ben'] += (individual['wic_impute_children'] +
+                                          individual['wic_impute_infants'] +
+                                          individual['wic_impute_women'])
 
         cahe = np.nan
 

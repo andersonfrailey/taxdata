@@ -5,7 +5,7 @@ from impute_itmexp import impute_itemized_expenses
 from impute_pencon import impute_pension_contributions
 
 
-BENPUF = False  # set temporarily to True to generate a benpuf.csv file
+BENPUF = True  # set temporarily to True to generate a benpuf.csv file
 # BENPUF = False will generate a puf.csv file without any benefits variables
 
 
@@ -14,7 +14,7 @@ def main():
     Contains all the logic of the puf_data/finalprep.py script.
     """
     # (*) Read unprocessed input file into a Pandas Dataframe
-    data = pandas.read_csv('cps-matched-puf.csv')
+    data = pandas.read_csv('cps-matched-puf_ben.csv')
 
     # Rename certain CPS variables
     renames = {

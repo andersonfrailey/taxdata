@@ -13,7 +13,8 @@ def add_cps(cps_recs, match, puffile):
     cpsfile = cps_recs.filter(regex=r'jcps\d{1,2}$|icps\d{1}$|' +
                                     'jcps100|cpsseq|' +
                                     r'nu\d{1,2}|nu18_dep|n1820|n21|' +
-                                    'elderly_dependent|wasp|wass|xstate')
+                                    'elderly_dependent|wasp|wass|xstate' +
+                                    r'\w+_ben')
     # cpsfile = cps_recs
     # match = pd.read_csv('match.csv')
     # puffile = pd.read_sas('puf2009.sas7bdat')

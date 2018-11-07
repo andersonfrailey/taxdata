@@ -1,13 +1,14 @@
-from adj_filst import adjfilst
 import cpsmar
+import pandas as pd
+import os
+from adj_filst import adjfilst
 from cps_rets import Returns
 from soi_rets import create_soi
 from phase1 import phaseone
 from phase2 import phasetwo
 from add_cps_vars import add_cps
 from add_nonfilers import add_nonfiler
-import pandas as pd
-import os
+from merge_benefits import benefit_merge
 
 """
 Script to run each phase of the matching process
@@ -17,15 +18,21 @@ Script to run each phase of the matching process
 def match():
     # If there is a .CSV version of the CPS, simply read that in. Otherwise
     # convert the .DAT file to a .CSV
-    cps_csv_path = 'cpsmar2016.csv'
+    cps_csv_path = 'cpsmar2016_aug.csv'
     if os.path.isfile(cps_csv_path):
         print('Reading CPS Data from .CSV')
         mar_cps = pd.read_csv(cps_csv_path)
     else:
+        raw_cps_path = 'cpsmar2016.csv'
         cps_dat_path = 'asec2016_pubuse_v3.dat'
-        if os.path.isfile(cps_dat_path):
+        if os.path.isfile(raw_cps_path):
+            raw_cps = pd.read_csv(raw_cps_path)
+            mar_cps = benefit_merge(raw_cps)
+        elif os.path.isfile(cps_dat_path):
             print('Converting .DAT to .CSV')
-            mar_cps = cpsmar.create_cps(cps_dat_path)
+            raw_cps = cpsmar.create_cps(cps_dat_path)
+            mar_cps = benefit_merge(raw_cps)
+            mar_cps.to_csv(cps_csv_path, index=None)
         else:
             m = ('You must have either the .DAT or .CSV version of the 2016' +
                  ' CPS in your directory')
@@ -76,5 +83,5 @@ def match():
 
 if __name__ == "__main__":
     cps_matched = match()
-    cps_matched.to_csv('../../cps-matched-puf.csv', index=False,
+    cps_matched.to_csv('../../cps-matched-puf_ben.csv', index=False,
                        float_format='%.2f')
