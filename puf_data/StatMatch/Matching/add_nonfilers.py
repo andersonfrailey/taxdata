@@ -36,8 +36,10 @@ def add_nonfiler(cpsrets, nonfiler):
                                                    r'nu\d{1,2}|nu18_dep|' +
                                                    'n1820|n21|' +
                                                    'elderly_dependent|wasp|' +
-                                                   'wass|xstate' +
-                                                   r'\w+_ben'))
+                                                   'wass|xstate|' +
+                                                   'housing_ben|snap_ben|' +
+                                                   'ssi_ben|tanf_ben|' +
+                                                   'wic_ben'))
 
     nonfiler['filer'] = 0
     nonfiler['soiseq'] = 0

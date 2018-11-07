@@ -41,7 +41,7 @@ import statsmodels.api as sm
 DUMP0 = False
 DUMP1 = False
 DUMP2 = False
-CALIBRATING = False
+CALIBRATING = True
 
 
 def impute(ievar, logit_prob_af, log_amount_af,
