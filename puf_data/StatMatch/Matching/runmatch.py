@@ -26,8 +26,10 @@ def match():
         raw_cps_path = 'cpsmar2016.csv'
         cps_dat_path = 'asec2016_pubuse_v3.dat'
         if os.path.isfile(raw_cps_path):
+            print('Merging Benefit Data')
             raw_cps = pd.read_csv(raw_cps_path)
             mar_cps = benefit_merge(raw_cps)
+            mar_cps.to_csv('cpsmar2016_aug.csv', index=None)
         elif os.path.isfile(cps_dat_path):
             print('Converting .DAT to .CSV')
             raw_cps = cpsmar.create_cps(cps_dat_path)
@@ -49,6 +51,7 @@ def match():
     print('Creating CPS Tax Units')
     rets = Returns(mar_cps)
     cps = rets.computation()
+    assert('wic_ben' in cps)
 
     print('CPS Tax Units Created')
     filers, nonfilers = adjfilst(cps)
@@ -68,7 +71,9 @@ def match():
 
     print('Creating final file')
     cpsrets = add_cps(filers, match, puf)
+    assert('wic_ben' in cpsrets)
     cps_matched = add_nonfiler(cpsrets, nonfilers)
+    assert('wic_ben' in cps_matched)
     # add age range variable
     cps_matched['agerange'] = 0
     # Rename variables for use in PUF data prep
@@ -83,5 +88,6 @@ def match():
 
 if __name__ == "__main__":
     cps_matched = match()
+    print('Exporting Final File')
     cps_matched.to_csv('../../cps-matched-puf_ben.csv', index=False,
                        float_format='%.2f')

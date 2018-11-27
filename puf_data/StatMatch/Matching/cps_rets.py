@@ -185,7 +185,7 @@ class Returns(object):
         record['housing_ben'] = record['housing_impute']
         record['snap_ben'] = record['snap_impute']
         record['ssi_ben'] = record['ssi_impute']
-        record['tanf_ben'] = record['tanf_impute']
+        # record['tanf_ben'] = record['tanf_impute']
         record['wic_ben'] = (record['wic_impute_children'] +
                              record['wic_impute_infants'] +
                              record['wic_impute_women'])
@@ -296,7 +296,7 @@ class Returns(object):
                 record['housing_ben'] += spouse['housing_impute']
                 record['snap_ben'] += spouse['snap_impute']
                 record['ssi_ben'] += spouse['ssi_impute']
-                record['tanf_ben'] += spouse['tanf_impute']
+                # record['tanf_ben'] += spouse['tanf_impute']
                 record['wic_ben'] += (spouse['wic_impute_children'] +
                                       spouse['wic_impute_infants'] +
                                       spouse['wic_impute_women'])
@@ -737,7 +737,7 @@ class Returns(object):
                     record['housing_ben'] += individual['housing_impute']
                     record['snap_ben'] += individual['snap_impute']
                     record['ssi_ben'] += individual['ssi_impute']
-                    record['tanf_ben'] += individual['tanf_impute']
+                    # record['tanf_ben'] += individual['tanf_impute']
                     record['wic_ben'] += (individual['wic_impute_children'] +
                                           individual['wic_impute_infants'] +
                                           individual['wic_impute_women'])
@@ -1094,7 +1094,8 @@ class Returns(object):
                          'zssinc', 'zpubas', 'zvetbe', 'zfinas', 'zowner',
                          'zwaspt', 'zwassp', 'wasp', 'wass', 'nu05', 'nu13',
                          'nu18_dep', 'nu18', 'n1820', 'n21',
-                         'elderly_dependents']
+                         'elderly_dependents', 'housing_ben', 'snap_ben',
+                         'ssi_ben', 'wic_ben']
         for var in repeated_vars:
             record[var] = unit[var]
 
