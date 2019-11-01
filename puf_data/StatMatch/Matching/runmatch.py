@@ -1,13 +1,14 @@
-from adj_filst import adjfilst
+import pandas as pd
+import os
 import cpsmar
+from adj_filst import adjfilst
 from cps_rets import Returns
 from soi_rets import create_soi
 from phase1 import phaseone
 from phase2 import phasetwo
 from add_cps_vars import add_cps
 from add_nonfilers import add_nonfiler
-import pandas as pd
-import os
+
 
 """
 Script to run each phase of the matching process
@@ -27,7 +28,7 @@ def match():
         cps_dat_path = os.path.join(CUR_PATH, 'asec2016_pubuse_v3.dat')
         if os.path.isfile(cps_dat_path):
             print('Converting .DAT to .CSV')
-            mar_cps = cpsmar.create_cps(cps_dat_path)
+            mar_cps = cpsmar.create_cps(cps_dat_path, "2016")
         else:
             m = ('You must have either the .DAT or .CSV version of the 2016' +
                  ' CPS in your directory')
